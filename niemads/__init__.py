@@ -1,2 +1,3 @@
 from niemads.DisjointSet import DisjointSet
-__all__ = ['DisjointSet']
+from niemads.MultiwayTrie import MultiwayTrie
+__all__ = ['DisjointSet', 'MultiwayTrie']

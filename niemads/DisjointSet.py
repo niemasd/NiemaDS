@@ -6,7 +6,7 @@ except ImportError:
 class DisjointSet:
     '''``DisjointSet`` class, implemented using the Up-Tree data structure for amortized O(1) find and union operations'''
     def __init__(self, initial=None):
-        '''`DisjointSet` constructor
+        '''``DisjointSet`` constructor
         
         Args:
             ``initial`` (iterable): Elements with which to initialize the ``DisjointSet`` (each element will be in its own set)
@@ -16,7 +16,6 @@ class DisjointSet:
         if initial is not None:
             for x in initial:
                 self.add(x)
-            print(self)
 
     def __contains__(self, x):
         '''Check if an element ``x`` exists in this ``DisjointSet``
