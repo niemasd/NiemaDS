@@ -39,6 +39,8 @@
   <h1>Source code for niemads.MultiwayTrie</h1><div class="highlight"><pre>
 <span></span><span class="ch">#! /usr/bin/env python</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">deque</span>
+<span class="kn">from</span> <span class="nn">gzip</span> <span class="k">import</span> <span class="nb">open</span> <span class="k">as</span> <span class="n">gopen</span>
+<span class="n">WORD_IDENT</span> <span class="o">=</span> <span class="s1">&#39;W&#39;</span>
 
 <span class="k">class</span> <span class="nc">MWTNode</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39;Node helper class for ``MultiwayTrie``&#39;&#39;&#39;</span>
@@ -47,6 +49,49 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">word</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">traverse_preorder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Traverse the nodes of this ``MultiwayTrie`` via preorder traversal starting at this node&#39;&#39;&#39;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">deque</span><span class="p">();</span> <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">();</span> <span class="k">yield</span> <span class="n">curr</span>
+            <span class="n">s</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">traverse_postorder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Traverse the nodes of this ``MultiwayTrie`` via postorder traversal starting at this node&#39;&#39;&#39;</span>
+        <span class="n">s1</span> <span class="o">=</span> <span class="n">deque</span><span class="p">();</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">deque</span><span class="p">();</span> <span class="n">s1</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">pop</span><span class="p">();</span> <span class="n">s2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">);</span> <span class="n">s1</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">k</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">s2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">newick</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Newick string conversion starting at this node</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            ``str``: Newick string conversion starting at this node</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">node_to_str</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">letter</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">traverse_postorder</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">word</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Encountered a leaf that is not a word node&quot;</span><span class="p">)</span>
+                <span class="n">node_to_str</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">letter</span> <span class="o">+</span> <span class="n">WORD_IDENT</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;(&#39;</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                    <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node_to_str</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+                    <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+                    <span class="k">del</span> <span class="n">node_to_str</span><span class="p">[</span><span class="n">c</span><span class="p">]</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="c1"># trailing comma</span>
+                <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">word</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">letter</span> <span class="o">+</span> <span class="n">WORD_IDENT</span><span class="p">)</span>
+                <span class="n">node_to_str</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node_to_str</span><span class="p">[</span><span class="bp">self</span><span class="p">]</span>
 
 <div class="viewcode-block" id="MultiwayTrie"><a class="viewcode-back" href="../../index.html#niemads.MultiwayTrie">[docs]</a><span class="k">class</span> <span class="nc">MultiwayTrie</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39;``MultiwayTrie`` class, implemented using ``TreeSwift``&#39;&#39;&#39;</span>
@@ -92,12 +137,12 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_elements</span>
 
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Return a string representation of this ``MultiwayTrie``</span>
+        <span class="sd">&#39;&#39;&#39;Return a Newick string representation of this ``MultiwayTrie``</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            ``str``: A string representation of this ``MultiwayTrie``</span>
+<span class="sd">            ``str``: A Newick string representation of this ``MultiwayTrie``</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iter_ascending</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">newick</span><span class="p">()</span>
 
 <div class="viewcode-block" id="MultiwayTrie.add"><a class="viewcode-back" href="../../index.html#niemads.MultiwayTrie.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Add a new element ``x`` to this ``MultiwayTrie``</span>
@@ -147,22 +192,66 @@
 
 <div class="viewcode-block" id="MultiwayTrie.iter_ascending"><a class="viewcode-back" href="../../index.html#niemads.MultiwayTrie.iter_ascending">[docs]</a>    <span class="k">def</span> <span class="nf">iter_ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Iterate over the elements of this ``MultiwayTrie`` in ascending order&#39;&#39;&#39;</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="n">deque</span><span class="p">();</span> <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">curr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">word</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="n">curr</span><span class="o">.</span><span class="n">word</span>
-            <span class="n">s</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">curr</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span></div>
+        <span class="k">for</span> <span class="n">letter</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">traverse_preorder</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">word</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">node</span><span class="o">.</span><span class="n">word</span></div>
 
 <div class="viewcode-block" id="MultiwayTrie.iter_descending"><a class="viewcode-back" href="../../index.html#niemads.MultiwayTrie.iter_descending">[docs]</a>    <span class="k">def</span> <span class="nf">iter_descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Iterate over the elements of this ``MultiwayTrie`` in descending order&#39;&#39;&#39;</span>
-        <span class="n">s1</span> <span class="o">=</span> <span class="n">deque</span><span class="p">();</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">deque</span><span class="p">();</span> <span class="n">s1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">curr</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="n">pop</span><span class="p">();</span> <span class="n">s2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">);</span> <span class="n">s1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">curr</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">curr</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">s2</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">curr</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">word</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="n">curr</span><span class="o">.</span><span class="n">word</span></div></div>
+        <span class="k">for</span> <span class="n">letter</span><span class="p">,</span><span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">traverse_postorder</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">word</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">node</span><span class="o">.</span><span class="n">word</span></div>
+
+<div class="viewcode-block" id="MultiwayTrie.read_tree_newick"><a class="viewcode-back" href="../../index.html#niemads.MultiwayTrie.read_tree_newick">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">read_tree_newick</span><span class="p">(</span><span class="n">newick</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Read a tree from a Newick string or file</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ``newick`` (``str``): Either a Newick string or the path to a Newick file (plain-text or gzipped)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ``MultiwayTrie``: The Multiway Trie represented by ``newick``. If the Newick file has multiple trees (one per line), a ``list`` of ``Tree`` objects will be returned</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">newick</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">newick</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">newick</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;newick must be a str&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">newick</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.gz&#39;</span><span class="p">):</span> <span class="c1"># gzipped file</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="n">gopen</span><span class="p">(</span><span class="n">expanduser</span><span class="p">(</span><span class="n">newick</span><span class="p">));</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">();</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">isfile</span><span class="p">(</span><span class="n">expanduser</span><span class="p">(</span><span class="n">newick</span><span class="p">)):</span> <span class="c1"># plain-text file</span>
+            <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">expanduser</span><span class="p">(</span><span class="n">newick</span><span class="p">));</span> <span class="n">ts</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">();</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ts</span> <span class="o">=</span> <span class="n">newick</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">ts</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">read_tree_newick</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">]</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        try:</span>
+<span class="sd">            t = MultiwayTrie(); n = t.root; i = 0</span>
+<span class="sd">            while i &lt; len(ts):</span>
+<span class="sd">                if ts[i] == &#39;(&#39;:</span>
+<span class="sd">                    c = MWTNode(); n.add_child(c); n = c</span>
+<span class="sd">                elif ts[i] == &#39;)&#39;:</span>
+<span class="sd">                    n = n.parent</span>
+<span class="sd">                elif ts[i] == &#39;,&#39;:</span>
+<span class="sd">                    n = n.parent; c = Node(); n.add_child(c); n = c</span>
+<span class="sd">                elif ts[i] == &#39;:&#39;:</span>
+<span class="sd">                    i += 1; ls = &#39;&#39;</span>
+<span class="sd">                    while ts[i] != &#39;,&#39; and ts[i] != &#39;)&#39; and ts[i] != &#39;;&#39;:</span>
+<span class="sd">                        ls += ts[i]; i += 1</span>
+<span class="sd">                    n.edge_length = float(ls); i -= 1</span>
+<span class="sd">                else:</span>
+<span class="sd">                    label = &#39;&#39;</span>
+<span class="sd">                    while ts[i] != &#39;:&#39; and ts[i] != &#39;,&#39; and ts[i] != &#39;;&#39; and ts[i] != &#39;)&#39;:</span>
+<span class="sd">                        label += ts[i]; i += 1</span>
+<span class="sd">                    i -= 1; n.label = label</span>
+<span class="sd">                i += 1</span>
+<span class="sd">        except Exception as e:</span>
+<span class="sd">            raise RuntimeError(&quot;Failed to parse string as Newick: %s&quot;%ts)</span>
+<span class="sd">        return t</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="kc">None</span> <span class="c1"># not implemented yet</span></div></div>
 </pre></div>
 
           </div>

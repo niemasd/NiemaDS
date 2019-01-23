@@ -137,6 +137,18 @@
 <dd><p>Iterate over the elements of this <code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code> in descending order</p>
 </dd></dl>
 
+<dl class="staticmethod">
+<dt id="niemads.MultiwayTrie.read_tree_newick">
+<em class="property">static </em><code class="descname">read_tree_newick</code><span class="sig-paren">(</span><em>newick</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.read_tree_newick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.read_tree_newick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a tree from a Newick string or file</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">newick</span></code> (<code class="docutils literal notranslate"><span class="pre">str</span></code>): Either a Newick string or the path to a Newick file (plain-text or gzipped)</dd>
+<dt>Returns:</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code>: The Multiway Trie represented by <code class="docutils literal notranslate"><span class="pre">newick</span></code>. If the Newick file has multiple trees (one per line), a <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects will be returned</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="niemads.MultiwayTrie.remove">
 <code class="descname">remove</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.remove" title="Permalink to this definition">¶</a></dt>

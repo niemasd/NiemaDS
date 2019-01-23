@@ -14,7 +14,7 @@ from os import path
 here = path.abspath(path.dirname(__file__))
 setup(
     name='niemads',  # Required
-    version='1.0.12',  # Required
+    version='1.0.14',  # Required
     description='NiemaDS: Non-standard data structures for Python 2 and 3',  # Required
     long_description='NiemaDS is a Python library that implements useful non-standard data structures.',  # Optional
     long_description_content_type='text/plain',  # Optional (see note above)
