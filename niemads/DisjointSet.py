@@ -35,6 +35,14 @@ class DisjointSet:
         '''
         return len(self.parent)
 
+    def __str__(self):
+        '''Return a string representation of this ``DisjointSet``
+
+        Returns:
+            ``str``: A string representation of this ``DisjointSet``
+        '''
+        return str(self.sets())
+
     def add(self, x):
         '''Add a new element ``x`` to this ``DisjointSet`` as a sentinel node
 
@@ -97,3 +105,17 @@ class DisjointSet:
             self.parent[sy] = sx; self.num_below[sx] += (self.num_below[sy] + 1)
         else:
             self.parent[sx] = sy; self.num_below[sy] += (self.num_below[sx] + 1)
+
+    def sets(self):
+        '''Return the sets of this ``DisjointSet``
+
+        Returns:
+            ``list`` of ``set``: The sets of this ``DisjointSet``
+        '''
+        out_sets = dict()
+        for x in self.parent:
+            p = self.parent[x]
+            if p not in out_sets:
+                out_sets[p] = set()
+            out_sets[p].add(x)
+        return list(out_sets.values())
