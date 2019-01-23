@@ -42,31 +42,50 @@
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-niemads" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="niemads.DisjointSet">
-<em class="property">class </em><code class="descclassname">niemads.</code><code class="descname">DisjointSet</code><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">niemads.</code><code class="descname">DisjointSet</code><span class="sig-paren">(</span><em>initial=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p><cite>DisjointSet</cite> class, implemented using the Up-Tree data structure for amortized O(1) find and union operations</p>
+<p><code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code> class, implemented using the Up-Tree data structure for amortized O(1) find and union operations</p>
 <dl class="method">
 <dt id="niemads.DisjointSet.add">
 <code class="descname">add</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new element <cite>x</cite> to this <cite>DisjointSet</cite> as a sentinel node</p>
+<dd><p>Add a new element <code class="docutils literal notranslate"><span class="pre">x</span></code> to this <code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code> as a sentinel node</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to insert</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="niemads.DisjointSet.find">
 <code class="descname">find</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.find"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.find" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the sentinel node of the element <cite>x</cite>. Implements path compression along the search</p>
+<dd><p>Return the sentinel node of the element <code class="docutils literal notranslate"><span class="pre">x</span></code>. Implements path compression along the search</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to find</dd>
+<dt>Returns:</dt>
+<dd>The sentinel node of <code class="docutils literal notranslate"><span class="pre">x</span></code></dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="niemads.DisjointSet.remove">
 <code class="descname">remove</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove the element <cite>x</cite> from this <cite>DisjointSet</cite></p>
+<dd><p>Remove the element <code class="docutils literal notranslate"><span class="pre">x</span></code> from this <code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code></p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to remove</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="niemads.DisjointSet.union">
 <code class="descname">union</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.union" title="Permalink to this definition">¶</a></dt>
-<dd><p>Union the sets containing <cite>x</cite> and <cite>y</cite>. Implements Union-By-Size</p>
+<dd><p>Union the sets containing <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. Implements Union-By-Size</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: One of the two elements whose sets will be unioned
+<code class="docutils literal notranslate"><span class="pre">y</span></code>: One of the two elements whose sets will be unioned</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

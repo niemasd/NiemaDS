@@ -39,31 +39,57 @@
   <h1>Source code for niemads.DisjointSet</h1><div class="highlight"><pre>
 <span></span><span class="ch">#! /usr/bin/env python</span>
 <div class="viewcode-block" id="DisjointSet"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet">[docs]</a><span class="k">class</span> <span class="nc">DisjointSet</span><span class="p">:</span>
-    <span class="sd">&#39;&#39;&#39;`DisjointSet` class, implemented using the Up-Tree data structure for amortized O(1) find and union operations&#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;`DisjointSet` constructor&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;``DisjointSet`` class, implemented using the Up-Tree data structure for amortized O(1) find and union operations&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;`DisjointSet` constructor</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            ``initial`` (iterable): Elements with which to initialize the ``DisjointSet`` (each element will be in its own set)</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># parent[u] = parent of node u</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_below</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span> <span class="c1"># num_below[u] = number of nodes below u (including u) (only current for sentinels)</span>
+        <span class="k">if</span> <span class="n">initial</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">initial</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Check if an element `x` exists in this `DisjointSet`&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Check if an element ``x`` exists in this ``DisjointSet``</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ``x``: The element to check</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ``bool``: ``True`` if ``x`` exists in this ``DisjointSet``, otherwise ``False``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Return the number of elements in this `DisjointSet`&#39;&#39;&#39;</span>
+        <span class="sd">&#39;&#39;&#39;Return the number of elements in this ``DisjointSet``</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ``int``: The number of elements contained within this ``DisjointSet``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
 
-<div class="viewcode-block" id="DisjointSet.add"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span> <span class="c1"># add x as a sentinel node</span>
-        <span class="sd">&#39;&#39;&#39;Add a new element `x` to this `DisjointSet` as a sentinel node&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="DisjointSet.add"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.add">[docs]</a>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Add a new element ``x`` to this ``DisjointSet`` as a sentinel node</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ``x``: The element to insert</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Node already exists: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_below</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span></div>
 
-<div class="viewcode-block" id="DisjointSet.remove"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Remove the element `x` from this `DisjointSet`&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="DisjointSet.remove"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.remove">[docs]</a>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Remove the element ``x`` from this ``DisjointSet``</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ``x``: The element to remove</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Node not found: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
         <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
@@ -74,8 +100,15 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">e</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_below</span><span class="p">[</span><span class="n">x</span><span class="p">]</span></div>
 
-<div class="viewcode-block" id="DisjointSet.find"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.find">[docs]</a>    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Return the sentinel node of the element `x`. Implements path compression along the search&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="DisjointSet.find"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.find">[docs]</a>    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Return the sentinel node of the element ``x``. Implements path compression along the search</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ``x``: The element to find</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The sentinel node of ``x``</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Node not found: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
         <span class="n">explored</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">();</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">x</span>
@@ -85,13 +118,20 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">explored</span><span class="o">.</span><span class="n">get</span><span class="p">()]</span> <span class="o">=</span> <span class="n">curr</span>
         <span class="k">return</span> <span class="n">curr</span></div>
 
-<div class="viewcode-block" id="DisjointSet.union"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.union">[docs]</a>    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span> <span class="c1"># union the sets containing x and y</span>
-        <span class="sd">&#39;&#39;&#39;Union the sets containing `x` and `y`. Implements Union-By-Size&#39;&#39;&#39;</span>
+<div class="viewcode-block" id="DisjointSet.union"><a class="viewcode-back" href="../../index.html#niemads.DisjointSet.union">[docs]</a>    <span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Union the sets containing ``x`` and ``y``. Implements Union-By-Size</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ``x``: One of the two elements whose sets will be unioned</span>
+<span class="sd">            ``y``: One of the two elements whose sets will be unioned</span>
+<span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Node not found: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">x</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">y</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Node not found: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="o">%</span><span class="n">y</span><span class="p">)</span>
         <span class="n">sx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">sy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sx</span> <span class="o">==</span> <span class="n">sy</span><span class="p">:</span>
+            <span class="k">return</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_below</span><span class="p">[</span><span class="n">sx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_below</span><span class="p">[</span><span class="n">sy</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">[</span><span class="n">sy</span><span class="p">]</span> <span class="o">=</span> <span class="n">sx</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_below</span><span class="p">[</span><span class="n">sx</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_below</span><span class="p">[</span><span class="n">sy</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
