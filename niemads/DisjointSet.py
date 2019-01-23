@@ -1,4 +1,8 @@
 #! /usr/bin/env python
+try:
+    from Queue import Queue
+except ImportError:
+    from queue import Queue
 class DisjointSet:
     '''``DisjointSet`` class, implemented using the Up-Tree data structure for amortized O(1) find and union operations'''
     def __init__(self, initial=None):
@@ -12,6 +16,7 @@ class DisjointSet:
         if initial is not None:
             for x in initial:
                 self.add(x)
+            print(self)
 
     def __contains__(self, x):
         '''Check if an element ``x`` exists in this ``DisjointSet``
@@ -22,10 +27,12 @@ class DisjointSet:
         Returns:
             ``bool``: ``True`` if ``x`` exists in this ``DisjointSet``, otherwise ``False``
         '''
-        try:
-            return x in self.parent
-        except:
-            return False
+        return x in self.parent
+
+    def __iter__(self):
+        ''' Iterate over the elements of this ``DisjointSet``'''
+        for x in self.parent:
+            yield x
 
     def __len__(self):
         '''Return the number of elements in this ``DisjointSet``
@@ -115,6 +122,8 @@ class DisjointSet:
         out_sets = dict()
         for x in self.parent:
             p = self.parent[x]
+            if p is None:
+                p = x
             if p not in out_sets:
                 out_sets[p] = set()
             out_sets[p].add(x)
