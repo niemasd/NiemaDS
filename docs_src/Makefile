@@ -23,5 +23,5 @@ help:
 		rm -rf "$(DOCSDIR)" ; \
 	fi
 	@if [ "$(@)" == "html" ]; then \
-		rm -rf "$(DOCSDIR)" && cp -R "$(BUILDDIR)/html" "$(DOCSDIR)" ; \
+		rm -rf "$(DOCSDIR)" && mv -R "$(BUILDDIR)/html" "$(DOCSDIR)" ; \
 	fi

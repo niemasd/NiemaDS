@@ -69,11 +69,19 @@ class RandomSet:
         self.elements[x_index] = self.elements[-1]; self.index[self.elements[-1]] = x_index
         self.elements.pop(); del self.index[x]
 
+    def top_random(self):
+        '''Randomly return an element from this ``RandomSet``
+
+        Returns:
+            A random element from this ``RandomSet``
+        '''
+        return choice(self.elements)
+
     def pop_random(self):
         '''Randomly remove and return an element from this ``RandomSet``
 
         Returns:
             A random element from this ``RandomSet``
         '''
-        x = choice(self.elements); self.remove(x)
+        x = self.top_random(); self.remove(x)
         return x
