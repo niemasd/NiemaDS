@@ -1,19 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
     <title>niemads package &#8212; NiemaDS  documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" /> 
   </head><body>
@@ -26,7 +29,8 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">NiemaDS  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">NiemaDS  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">niemads package</a></li> 
       </ul>
     </div>  
 
@@ -35,149 +39,214 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="niemads-package">
-<h1>niemads package<a class="headerlink" href="#niemads-package" title="Permalink to this headline">¶</a></h1>
+  <section id="niemads-package">
+<h1>niemads package<a class="headerlink" href="#niemads-package" title="Permalink to this heading">¶</a></h1>
 <p><a class="reference external" href="https://github.com/niemasd/NiemaDS">NiemaDS</a> is a Python library that implements useful non-standard data structures.</p>
-<div class="section" id="module-niemads">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-niemads" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="niemads.DisjointSet">
-<em class="property">class </em><code class="descclassname">niemads.</code><code class="descname">DisjointSet</code><span class="sig-paren">(</span><em>initial=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet" title="Permalink to this definition">¶</a></dt>
+<section id="module-niemads">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-niemads" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="niemads.DisjointSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">niemads.</span></span><span class="sig-name descname"><span class="pre">DisjointSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.DisjointSet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code> class, implemented using the Up-Tree data structure for amortized O(1) find and union operations</p>
-<dl class="method">
-<dt id="niemads.DisjointSet.add">
-<code class="descname">add</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.add" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.DisjointSet.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.DisjointSet.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new element <code class="docutils literal notranslate"><span class="pre">x</span></code> to this <code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code> as a sentinel node</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to insert</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to insert</p>
+</dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.DisjointSet.find">
-<code class="descname">find</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.find"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.find" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.DisjointSet.find">
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.DisjointSet.find" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the sentinel node of the element <code class="docutils literal notranslate"><span class="pre">x</span></code>. Implements path compression along the search</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to find</dd>
-<dt>Returns:</dt>
-<dd>The sentinel node of <code class="docutils literal notranslate"><span class="pre">x</span></code></dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to find</p>
+</dd>
+<dt>Returns:</dt><dd><p>The sentinel node of <code class="docutils literal notranslate"><span class="pre">x</span></code></p>
+</dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.DisjointSet.remove">
-<code class="descname">remove</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.remove" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.DisjointSet.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.DisjointSet.remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove the element <code class="docutils literal notranslate"><span class="pre">x</span></code> from this <code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code></p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to remove</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to remove</p>
+</dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.DisjointSet.sets">
-<code class="descname">sets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.sets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.sets" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.DisjointSet.sets">
+<span class="sig-name descname"><span class="pre">sets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.DisjointSet.sets" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the sets of this <code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code></p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">set</span></code>: The sets of this <code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code></dd>
+<dl class="simple">
+<dt>Returns:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">set</span></code>: The sets of this <code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code></p>
+</dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.DisjointSet.union">
-<code class="descname">union</code><span class="sig-paren">(</span><em>x</em>, <em>y</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.union"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.DisjointSet.union" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.DisjointSet.union">
+<span class="sig-name descname"><span class="pre">union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/DisjointSet.html#DisjointSet.union"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.DisjointSet.union" title="Permalink to this definition">¶</a></dt>
 <dd><p>Union the sets containing <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. Implements Union-By-Size</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: One of the two elements whose sets will be unioned
-<code class="docutils literal notranslate"><span class="pre">y</span></code>: One of the two elements whose sets will be unioned</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: One of the two elements whose sets will be unioned
+<code class="docutils literal notranslate"><span class="pre">y</span></code>: One of the two elements whose sets will be unioned</p>
+</dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="niemads.MultiwayTrie">
-<em class="property">class </em><code class="descclassname">niemads.</code><code class="descname">MultiwayTrie</code><span class="sig-paren">(</span><em>initial=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="niemads.MultiwayTrie">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">niemads.</span></span><span class="sig-name descname"><span class="pre">MultiwayTrie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.MultiwayTrie" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code> class, implemented using <code class="docutils literal notranslate"><span class="pre">TreeSwift</span></code></p>
-<dl class="method">
-<dt id="niemads.MultiwayTrie.add">
-<code class="descname">add</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.add"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.add" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.MultiwayTrie.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.MultiwayTrie.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a new element <code class="docutils literal notranslate"><span class="pre">x</span></code> to this <code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code></p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to insert</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to insert</p>
+</dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.MultiwayTrie.extend">
-<code class="descname">extend</code><span class="sig-paren">(</span><em>xs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.extend"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.extend" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.MultiwayTrie.extend">
+<span class="sig-name descname"><span class="pre">extend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.extend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.MultiwayTrie.extend" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add each element of <code class="docutils literal notranslate"><span class="pre">xs</span></code> to this <code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code></p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">xs</span></code>: The elements to insert</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">xs</span></code>: The elements to insert</p>
+</dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.MultiwayTrie.iter_ascending">
-<code class="descname">iter_ascending</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.iter_ascending"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.iter_ascending" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.MultiwayTrie.iter_ascending">
+<span class="sig-name descname"><span class="pre">iter_ascending</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.iter_ascending"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.MultiwayTrie.iter_ascending" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterate over the elements of this <code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code> in ascending order</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.MultiwayTrie.iter_descending">
-<code class="descname">iter_descending</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.iter_descending"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.iter_descending" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.MultiwayTrie.iter_descending">
+<span class="sig-name descname"><span class="pre">iter_descending</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.iter_descending"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.MultiwayTrie.iter_descending" title="Permalink to this definition">¶</a></dt>
 <dd><p>Iterate over the elements of this <code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code> in descending order</p>
 </dd></dl>
 
-<dl class="staticmethod">
-<dt id="niemads.MultiwayTrie.read_tree_newick">
-<em class="property">static </em><code class="descname">read_tree_newick</code><span class="sig-paren">(</span><em>newick</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.read_tree_newick"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.read_tree_newick" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.MultiwayTrie.read_tree_newick">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">read_tree_newick</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">newick</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.read_tree_newick"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.MultiwayTrie.read_tree_newick" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a tree from a Newick string or file</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">newick</span></code> (<code class="docutils literal notranslate"><span class="pre">str</span></code>): Either a Newick string or the path to a Newick file (plain-text or gzipped)</dd>
-<dt>Returns:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code>: The Multiway Trie represented by <code class="docutils literal notranslate"><span class="pre">newick</span></code>. If the Newick file has multiple trees (one per line), a <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects will be returned</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">newick</span></code> (<code class="docutils literal notranslate"><span class="pre">str</span></code>): Either a Newick string or the path to a Newick file (plain-text or gzipped)</p>
+</dd>
+<dt>Returns:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code>: The Multiway Trie represented by <code class="docutils literal notranslate"><span class="pre">newick</span></code>. If the Newick file has multiple trees (one per line), a <code class="docutils literal notranslate"><span class="pre">list</span></code> of <code class="docutils literal notranslate"><span class="pre">Tree</span></code> objects will be returned</p>
+</dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="niemads.MultiwayTrie.remove">
-<code class="descname">remove</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.remove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#niemads.MultiwayTrie.remove" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.MultiwayTrie.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/MultiwayTrie.html#MultiwayTrie.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.MultiwayTrie.remove" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove the element <code class="docutils literal notranslate"><span class="pre">x</span></code> from this <code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code></p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to remove</dd>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to remove</p>
+</dd>
 </dl>
 </dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="niemads.RandomSet">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">niemads.</span></span><span class="sig-name descname"><span class="pre">RandomSet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/RandomSet.html#RandomSet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.RandomSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">RandomSet</span></code> class, which is a set with random (rather than arbitrary) pop</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.RandomSet.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/RandomSet.html#RandomSet.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.RandomSet.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new element <code class="docutils literal notranslate"><span class="pre">x</span></code> to this <code class="docutils literal notranslate"><span class="pre">RandomSet</span></code></p>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to insert</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.RandomSet.pop_random">
+<span class="sig-name descname"><span class="pre">pop_random</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/RandomSet.html#RandomSet.pop_random"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.RandomSet.pop_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Randomly remove and return an element from this <code class="docutils literal notranslate"><span class="pre">RandomSet</span></code></p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A random element from this <code class="docutils literal notranslate"><span class="pre">RandomSet</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="niemads.RandomSet.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/niemads/RandomSet.html#RandomSet.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#niemads.RandomSet.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the element <code class="docutils literal notranslate"><span class="pre">x</span></code> from this <code class="docutils literal notranslate"><span class="pre">RandomSet</span></code></p>
+<dl class="simple">
+<dt>Args:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: The element to remove</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">niemads package</a><ul>
-<li><a class="reference internal" href="#module-niemads">Module contents</a></li>
+<li><a class="reference internal" href="#module-niemads">Module contents</a><ul>
+<li><a class="reference internal" href="#niemads.DisjointSet"><code class="docutils literal notranslate"><span class="pre">DisjointSet</span></code></a><ul>
+<li><a class="reference internal" href="#niemads.DisjointSet.add"><code class="docutils literal notranslate"><span class="pre">DisjointSet.add()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.DisjointSet.find"><code class="docutils literal notranslate"><span class="pre">DisjointSet.find()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.DisjointSet.remove"><code class="docutils literal notranslate"><span class="pre">DisjointSet.remove()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.DisjointSet.sets"><code class="docutils literal notranslate"><span class="pre">DisjointSet.sets()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.DisjointSet.union"><code class="docutils literal notranslate"><span class="pre">DisjointSet.union()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#niemads.MultiwayTrie"><code class="docutils literal notranslate"><span class="pre">MultiwayTrie</span></code></a><ul>
+<li><a class="reference internal" href="#niemads.MultiwayTrie.add"><code class="docutils literal notranslate"><span class="pre">MultiwayTrie.add()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.MultiwayTrie.extend"><code class="docutils literal notranslate"><span class="pre">MultiwayTrie.extend()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.MultiwayTrie.iter_ascending"><code class="docutils literal notranslate"><span class="pre">MultiwayTrie.iter_ascending()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.MultiwayTrie.iter_descending"><code class="docutils literal notranslate"><span class="pre">MultiwayTrie.iter_descending()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.MultiwayTrie.read_tree_newick"><code class="docutils literal notranslate"><span class="pre">MultiwayTrie.read_tree_newick()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.MultiwayTrie.remove"><code class="docutils literal notranslate"><span class="pre">MultiwayTrie.remove()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#niemads.RandomSet"><code class="docutils literal notranslate"><span class="pre">RandomSet</span></code></a><ul>
+<li><a class="reference internal" href="#niemads.RandomSet.add"><code class="docutils literal notranslate"><span class="pre">RandomSet.add()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.RandomSet.pop_random"><code class="docutils literal notranslate"><span class="pre">RandomSet.pop_random()</span></code></a></li>
+<li><a class="reference internal" href="#niemads.RandomSet.remove"><code class="docutils literal notranslate"><span class="pre">RandomSet.remove()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -186,17 +255,15 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -210,12 +277,13 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">NiemaDS  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">NiemaDS  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">niemads package</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2019, Niema Moshiri.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
   </body>
 </html>
